@@ -1,0 +1,30 @@
+<?xml-stylesheet href="../../xsl/StepDetails.xsl" type="text/xsl"?>
+<genericReporter>
+	<general>
+		<scenarioName></scenarioName>
+		<scenarioID></scenarioID>
+		<scenarioNumber/>
+    <application/>
+    <containsServices>0</containsServices>
+    <database/>
+    <product/>
+		<resultsFilePath/>
+		<resultsFilePathUK/>
+		<dateRun/>
+		<scheduledBy/>
+		<runStarted/>
+		<runEnded/>
+		<totalRunTime/>
+		<testSuite/>
+		<testEnvironment/>
+		<machineName/>
+		<regressionRunID/>
+		<releaseVersion/>
+		<failureImageURL/>
+		<failureComments/>
+		<finalRunStatus/>
+		<results passed="0" failed="0" knownDefects="0" resolvedDefects="0" missingData="0" disabledStep="0"/>
+	</general>
+	<createdEntities/>
+	<steps/>
+</genericReporter>

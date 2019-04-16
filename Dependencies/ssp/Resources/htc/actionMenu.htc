@@ -1,0 +1,486 @@
+<PUBLIC:COMPONENT tagName="actionMenu">
+	<PUBLIC:DEFAULTS tabStop="true"/>
+ 	<PUBLIC:ATTACH event="oncontentready" onevent="initMenu()"/>
+	<PUBLIC:PROPERTY NAME="htmlString"/>
+	<PUBLIC:PROPERTY NAME="contextHtmlString"/>
+	<PUBLIC:PROPERTY NAME="footerId"/>
+	<PUBLIC:PROPERTY NAME="mainMenuId"/>
+	<PUBLIC:PROPERTY NAME="hierarchy"/>
+	<PUBLIC:PROPERTY NAME="actionButtonArray"/>
+	<PUBLIC:PROPERTY NAME="subMenuPopup"/>
+	<PUBLIC:METHOD NAME="setCustomTags"/> 
+	<PUBLIC:METHOD NAME="buildMenu"/> 
+	<PUBLIC:METHOD NAME="openSubMenu"/>
+	<PUBLIC:METHOD NAME="initPopup"/>
+	<PUBLIC:METHOD NAME="subMenuCustomTagArray"/>
+	<PUBLIC:METHOD NAME="createCustomTag"/>
+	<PUBLIC:METHOD NAME="setActionButtonArray"/>
+	<PUBLIC:METHOD NAME="setContextArray"/>
+	<PUBLIC:METHOD NAME="openSubMenu"/>
+	<PUBLIC:METHOD NAME="closeSubMenu"/>
+	<PUBLIC:METHOD NAME="fnMouseOver"/>
+	<PUBLIC:METHOD NAME="fnMouseOut"/> 
+	<PUBLIC:METHOD NAME="fnOnMouseUp"/> 
+	<PUBLIC:METHOD NAME="fnOnMouseClick"/> 
+</PUBLIC:COMPONENT>
+
+	
+<SCRIPT Language="Javascript">
+
+var htmlString = null;
+var contextHtmlString = null;
+var contextArray = "";
+var actionButtonArray = "";
+var footerId = null;
+var footer;
+var defaultArray = "";
+var subMenu = false;
+var parentMenuId;
+var parentMenu = null;
+var hierarchy;
+var mainMenuId;
+var mainMenu;
+var subMenuCustomTagArray = new Array();
+var subMenuCustomTagCount = 0;
+var parents = "";
+var popupMenu;
+var ns;
+var subMenuPopup = null;
+var rightclicked = false;
+
+
+function initMenu() 
+{// link behaviour to document, set footer id
+
+	defaults.viewLink = document;
+	
+	// this is a cascading popup
+	if (element.id.indexOf("SUB") != "-1") {
+		footerId = "tFooter"+mainMenuId.substr(5);
+		subMenu = true;
+		for (k=0; k<hierarchy; k++) {
+			parents += "parent.";
+		}
+		footer = eval(parents+"window."+footerId);
+		
+	// this is single popup
+	} else {
+		footerId = "tFooter"+element.id.substr(5);
+		footer = eval("window."+footerId);
+	}
+	
+}
+
+function buildMenu(rightclick)
+{// called from tableFooter htc  - build action or rightclick menu (array is set in screen js)
+ // only builds menu if it is null or if it has been changed
+	rightclicked = rightclick;
+
+	var strVar = rightclick?contextHtmlString:htmlString;
+	// check if the menu has already been built
+	if (strVar != null) {
+		return true;
+	}
+	if (strVar == null || footer.menuSet) {
+		var optionList = rightclick?contextArray:actionButtonArray;
+	
+		if (optionList != "") {
+			var str = "<table cellspacing='0' cellpadding='0' oncontextMenu='return false;' id='menuTbl' class='menu'>";
+			for(var j=0; j<optionList.length; j++) {
+				if (typeof(optionList[j]) != "undefined" && optionList[j] != "") {
+					var newRow = addRow(optionList[j]);
+					str += newRow;
+				}
+			}	
+			str += "</table>";
+			menuDiv.innerHTML = str;
+			footer.menuSet = false; // set to true when submenu is set from outside
+			
+		} else {
+			str = null;
+		}
+		
+		if (rightclick) {
+			contextHtmlString = str;
+		} else {
+			htmlString = str;
+		}
+		return true;
+	}
+}
+
+function setContextArray(list)
+{// called from screen js - sets context array 
+
+	contextArray = list;
+	contextHtmlString = null
+}
+
+function setActionButtonArray(list, setDefault)
+{// called from screen js - sets menu array and enables/disables action button
+	if (setDefault) {
+		defaultArray = list;
+	}
+	if (list == "default") {
+		list = defaultArray;
+		footer.resetSubMenues();
+	}
+	actionButtonArray = list;
+
+	if (!subMenu) {
+		var disableButton = list==""?true:false;
+		footer.setButtonState(disableButton);
+	} 
+	htmlString = null
+}
+
+function fnMouseOver(obj)
+{// build in addRow (see below) - highlighting the row - in case of submenu: builds submenu and calls openSubMenu
+
+ 	obj.className = "highlightItem";
+  	obj.style.cursor = "hand";
+	
+	// first close all other menues
+	closeSubMenues(obj.parentElement.parentElement.rows, obj.subId);
+	
+	// check if we have to open a submenu
+	if (obj.functionName.indexOf("ARRAY") != -1) {
+		if(obj.lastChild.childNodes[0]) {
+			obj.lastChild.childNodes[0].src = obj.lastChild.childNodes[0].onSource;
+		}
+		buildSubMenu(obj);
+	} 
+}
+
+function fnMouseOut(obj)
+{// build in addRow (see below) - unhighlight 
+	
+	if (obj.functionName == "disabled") {
+		obj.className = "disabledItem";
+	} else {
+ 		obj.className = "menuItem";
+	}
+	if(obj.lastChild.childNodes[0]) {
+		obj.lastChild.childNodes[0].src = obj.lastChild.childNodes[0].offSource;
+	}
+	obj.style.cursor = "default";
+}
+
+function fnOnMouseClick(obj) 
+{
+	obj.className = "highlightItem";
+  	obj.style.cursor = "hand";
+	
+	// check if we have to open a submenu
+	if (obj.functionName.indexOf("ARRAY") != -1) {
+		buildSubMenu(obj);
+	} 
+}
+
+function fnOnMouseUp(obj)
+{// build in addRow (see below) - fires function - NOT used in submenues
+	if (!(obj.functionName.indexOf("ARRAY") != -1)) {
+		//determine mouse click - launch process in same window on left-click and
+		//in a new window for right-click - AD
+		var mouseClick = obj.document.parentWindow.event.button;		
+		var functionName = unescape(obj.functionName);	
+		if (functionName == "disabled") {
+			return;
+		}	
+		if (mouseClick == "1"){
+			var start = functionName.indexOf("(");
+			var end = functionName.lastIndexOf(")");
+			if (functionName.substr(start, end) == "()") {
+				functionName = functionName.slice(0,-1)+"true)";
+			} else {
+				functionName = functionName.slice(0,-1)+", true)";
+			}
+		}
+		eval(parents+"window."+footerId+".setButtonState()");
+		eval(parents+"window."+functionName);
+		if (rightclicked == true) {
+			footer.allMenues.item(element.id).hide();
+		}
+		if (footer.tablesPopupMenu.isOpen) {
+			footer.tablesPopupMenu.hide();
+		}
+	}
+}
+
+function addRow(listItem)
+{// builds row using item from option list
+ // information if menu item has submenu can be found in functionName 
+ 	
+ 	var header = false;
+ 	var special = "";
+	var displayText = listItem.split(";")[1];
+	if (displayText == "") {
+		var rowString = "<tr><td colspan='2'><hr></td></tr>";
+
+	} else {
+		var optionID = listItem.split(";")[0];
+		// this row is a header, display style is different and thereis no mouseover
+		if (optionID.indexOf("H*") != -1) {
+			optionID = optionID.split("-")[1];
+			header = true;
+		// this row is a special, display style is different
+		} else if (optionID.indexOf("SPEC") != -1) {
+			var splitText = optionID.split("*");
+			optionID = splitText[2];
+			special = splitText[1];
+		}
+		var imageSrc = listItem.split(";")[2];
+		var isEnabled = listItem.split(";")[3];
+		var functionName = listItem.split(";")[4];
+		var mouseup = ""; 
+		var subId = "";
+		var sideArrowIconStr = "";
+		var sideArrowIconOnSrc;
+		var sideArrowIconSrc;
+		
+		var thisStyle = isEnabled==1?"style='width: 20px;' align='absmiddle'":"style='width: 20px;filter:gray Alpha(opacity=50)' align='absmiddle'";
+		
+		// this is a cascading popup (this menu has a submenu)
+		if (functionName.indexOf("ARRAY") != -1) {
+			var arrayLength = functionName.split("-").length;
+			subId = functionName.split("-")[2];
+			var mainId = functionName.split("-")[arrayLength-1];
+			var parentId = functionName.split("-")[3];
+			hierarchy = arrayLength-3;
+			sideArrowIconOnSrc = top.getIconPath("SideArrowIconOn");
+			sideArrowIconSrc = top.getIconPath("SideArrowIcon");
+			sideArrowIconStr = "<img id='subMenuPointer' src='"+sideArrowIconSrc+"' align='absmiddle' onSource='"+sideArrowIconOnSrc+"' offSource='"+sideArrowIconSrc+"'/>";
+			if (!subMenu) { //this menu is not a submenu itself (= this is the main menu)
+				footer = eval("window."+footerId);
+				footer.addMenuNamespaceToPopup();
+				footer.createSubMenuCustomTag(subId,hierarchy, mainId);
+			}
+		// this is a single popup
+		} else {
+			functionName = escape(functionName);
+			mouseup = "onmouseup='parent."+element.id+".fnOnMouseUp(this)'";
+		}
+		var thisClass = isEnabled==1?"menuItem":"disabledItem";
+		functionName = isEnabled==1?"functionName = '"+functionName + "'":"functionName='disabled'";
+		
+		var onmouseover = "";
+		var onmouseout = "";
+		var onmouseup = "";
+		var specialStyle = "";
+		var imageString = "";
+		
+		// check for header and add style or build image
+		if(special) {
+			specialStyle = "style='font-weight:bold; color: firebrick;'";
+		} else {
+			if (special != "") {
+				specialStyle = '"'+special+'"';
+			}
+			if (functionName != "") {
+				onmouseover = " onmouseover='parent."+element.id+".fnMouseOver(this)'";
+				onmouseout = " onmouseout='parent."+element.id+".fnMouseOut(this)'";
+				onmouseup = " onmouseup='parent."+element.id+".fnOnMouseUp(this)' ";
+			}
+			if(imageSrc != null && imageSrc != ""){		
+				var imageString = top.buildIcon(imageSrc, null, null, null, thisStyle, null)+"&nbsp;&nbsp;";
+			} else {
+				var imageString = top.buildIcon("BlankIcon", null, null, null, thisStyle, null)+"&nbsp;&nbsp;";
+			}
+		}
+		 
+		// build row
+		var rowString = "<tr style='height:16px;'" + onmouseover + onmouseout + onmouseup + functionName + " id='" + optionID + "' class='"+thisClass+"'><td nowrap align='left'>"+imageString + "<label "+specialStyle+">"+displayText+"</label></td><td align='right'>"+sideArrowIconStr+"</td></tr>";	
+	}
+	return rowString;
+}
+
+function initPopup()
+{	// create popup, add styles
+
+	popupMenu = window.createPopup();
+	popupMenu.document.title = element.id;
+	popupMenu.document.body.bgColor = "#c0c0c0";
+	popupMenu.document.body.setAttribute("oncontextmenu", "return false;");
+	var popupStyle = popupMenu.document.createStyleSheet();
+	// there was an issue in te past with white borders around the popup menu, which was due to different sizes in the popup document and the table in it
+	// this problem was initiallly solved by setting the border on the document body instead of the table and also setting the background color of the document body to the same background color as the table - that way possible size differences weren't visible
+	// the border was reset to the table, because of a separate issue: when clicking on the document body border the window context menu popped up - the border was obviously a gray zone since it was not possible to trap the event on any of the elements involved
+	popupStyle.addRule(".menu", "font-family: verdana; font-size: 7.5pt; width:100%; height:100%; padding:2; border-top:  #efefef solid 1; border-left:  #efefef solid 1; border-right: #505050 solid 2;border-bottom: #505050 solid 2;");
+	popupStyle.addRule(".disabledItem", "background-color:transparent; color:graytext; cursor:default;");
+	popupStyle.addRule(".highlightItem", "background-color:#002277; color:white; cursor:hand;");
+	popupStyle.addRule(".menuItem", "background-color:transparent; color:black; cursor:default;");
+	
+	// store popup menu in dictionary object in top fst (globals.js)
+	if (!footer.allMenues.Exists(element.id)) {
+		footer.allMenues.add(element.id, popupMenu);
+	}
+	
+}
+
+function buildSubMenu(obj)
+{// builds and opens sub menu popup
+ //note: /*SUB*/: sub menu popup is created (initMenu) and content is built (buildMenu) in sub menu popup htc (it "builds itself") rather than in this (parent menu) htc
+
+	// position of submenu is determined by height of parent menu and position of row the mouse moved over
+	var posTop;
+	var posLeft;
+	var rowHeight = obj.clientHeight+3;
+	var factor = obj.rowIndex;
+	var verticalAdjust = 0;
+	if (rightclicked) {
+		verticalAdjust = rowHeight*(obj.parentElement.rows.length-factor);
+	} else {
+		verticalAdjust = rowHeight*(factor+1);
+	}
+	
+	var functionNameParameters = obj.functionName.split("-");
+	var subMenuId = functionNameParameters[2]; 
+	var position = functionNameParameters[1];
+	parentMenuId = functionNameParameters[3];
+	parentMenu = footer.allMenues.Item(parentMenuId);
+
+	mainMenuId = functionNameParameters[functionNameParameters.length-1];
+	posLeft = obj.parentElement.offsetWidth;
+	if (parentMenuId == mainMenuId) {
+		posTop = footer.menuHeight;
+	} else {
+		posTop = obj.parentElement.offsetHeight;
+	}
+	
+	// check if the menu exists and is already open
+	if (footer.allMenues.Exists(subMenuId)) {
+		if (footer.allMenues.Item(subMenuId).isOpen) {
+			return;
+		} 
+	}
+	
+	// get handle to submenu htc, create sub menu popup and set subMenuPopup global variable
+	var mySubMenu = parentMenu.document.getElementById(subMenuId);
+	/*SUB*/mySubMenu.initPopup();
+	subMenuPopup = footer.allMenues.Item(subMenuId);
+	
+	// get submenu array which is stored in tableFooter htc
+	var arrayLength = obj.functionName.split("-").length;
+	var hierarchy = arrayLength-3;
+	parents = "";
+	for (k=1; k<hierarchy; k++) {
+		parents += "parent.";
+	}
+	footer = eval(parents+"window."+footerId);
+	var subMenuArray = footer.allSubMenues[position];
+	
+	// for each potential submenu, store info for custom tags in array
+	for (var m=0; m<subMenuArray.length; m++) {
+		var functionName = subMenuArray[m].split(";")[4];	
+		if (functionName.indexOf("ARRAY") != -1) {
+			var arrayLength = functionName.split("-").length;
+			var subId = functionName.split("-")[2];
+			var mainId = functionName.split("-")[arrayLength-1];
+			hierarchy = arrayLength-3;
+			var tagParam = new Array(subId, hierarchy, mainId);
+			if (subMenuPopup.document.getElementById(subId) == null) {
+				subMenuCustomTagArray[subMenuCustomTagCount] = tagParam;
+				subMenuCustomTagCount++;
+			}
+		}
+	}
+
+	//set popup's action button array
+	/*SUB*/mySubMenu.setActionButtonArray(subMenuArray);
+	// build sub menu popup content
+	/*SUB*/mySubMenu.buildMenu(false);
+	subMenuHTML = mySubMenu.htmlString;
+	// insert content into popup
+	subMenuPopup.document.body.innerHTML = subMenuHTML;
+	// add namespace and custom tags to sub menu popup once it is fully loaded
+	if(subMenuPopup.document.readyState != "complete") {
+		subMenuPopup.document.attachEvent("onreadystatechange", addNamespace);
+	} else {
+		addNamespace();
+		// open submenu
+		openSubMenu(posTop, posLeft, verticalAdjust);
+	}
+}
+
+
+function addNamespace()
+{// adds namespace after document is loaded and custom tags after namespace is loaded
+
+	if(subMenuPopup.document.readyState != "complete") {
+		return;
+	}
+	
+	subMenuPopup.document.documentElement.setAttribute("xmlns", "tables");
+	var path = top.environmentObj.getBasePath()+"//common//htc//actionMenu.htc";
+	subMenuPopup.document.namespaces.add("tables", "", path);
+	ns = subMenuPopup.document.namespaces["tables"];
+
+	if(ns.readyState != "complete") {
+		ns.attachEvent("onreadystatechange", setCustomTags);
+	} else {		
+		setCustomTags();
+		subMenuPopup.document.detachEvent("onreadystatechange",  addNamespace);
+	}
+}
+
+function setCustomTags()
+{	// set custom tags when namespace has been loaded
+
+	if(subMenuPopup.document.readyState != "complete") {
+		return;
+	}
+
+	for (var m=0; m<subMenuCustomTagArray.length; m++) {
+		var subMenuCustomTag = subMenuPopup.document.createElement("tables:actionMenu");
+		subMenuCustomTag.id = subMenuCustomTagArray[m][0];
+		subMenuCustomTag.hierarchy = subMenuCustomTagArray[m][1];
+		subMenuCustomTag.mainMenuId = subMenuCustomTagArray[m][2];
+		subMenuPopup.document.body.appendChild(subMenuCustomTag);
+	}
+	
+	ns.detachEvent("onreadystatechange",  setCustomTags);
+}
+
+function openSubMenu(posTop, posLeft, verticalAdjust) 
+{// creates and opens submenu
+
+	// determine width and height
+	subMenuPopup.show(0,0,0,0);
+	var posHeight = subMenuPopup.document.body.scrollHeight;
+	var posWidth = subMenuPopup.document.body.scrollWidth;
+	subMenuPopup.hide();
+	
+	if (rightclicked) {
+		posTop = posTop-verticalAdjust;
+		if (parentMenuId != mainMenuId) {
+			posTop += posHeight;
+		}
+	} else {
+		posTop = -posHeight+verticalAdjust;
+	}
+	
+	subMenuPopup.show(posLeft, posTop, posWidth, posHeight, top.document.body);
+}
+
+function closeSubMenues(allRows, objSubId)
+{// closes popups if user mouseovers another row
+
+	if (allRows) {
+		for (var j=0; j<allRows.length; j++) {
+			if (allRows[j].subId != objSubId) {
+				if (footer.allMenues.exists(allRows[j].subId) && footer.allMenues.item(allRows[j].subId).isOpen) {
+					footer.allMenues.item(allRows[j].subId).hide();	
+				}
+			}
+		}
+	} 
+}
+
+
+
+</SCRIPT>
+
+
+<BODY>
+<div id="menuDiv" style="display:none;"></div>
+</BODY>

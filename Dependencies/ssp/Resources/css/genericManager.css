@@ -1,0 +1,1043 @@
+
+.hl_qt  { color: white; font-size: 24pt; font-family: Calibri; background-color: #666; text-align: center; padding: 0px 3px 3px }
+.hl_red  { color: white; font-size: 24pt; font-family: Calibri; background-color: #ff0000; text-align: center; }
+.hl0
+ { color: #999; font-weight: bold; font-size: 18pt; font-family: Calibri; text-align: center; padding: 2px 3px; border-bottom: 3px dotted #999 }
+.hl0_name { color: #999; font-weight: normal; font-size: 18pt; font-family: Calibri; text-align: center; padding: 2px 3px; border-bottom: 3px dotted #999 }
+.hl1
+{
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold
+}
+.sectionHeaders
+{
+    COLOR: #b00;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold;
+    PADDING-Left: 0px;
+    PADDING-Bottom: 0px;
+}
+.tableBorder {
+    border-style:solid; 
+    border-width: 1px; 
+    border-color: darkgray;
+}
+.tdBorder {
+    padding-left:5px;
+    border-left-style:solid; 
+    border-left-width: 1px; 
+    border-bottom-style:solid; 
+    border-bottom-width: 1px; 
+    border-left-color: #DCDCDC;
+    border-bottom-color: #DCDCDC; 
+}
+.tdBorderRight {
+    padding-left:5px;
+    border-left-style:solid; 
+    border-left-width: 1px; 
+    border-right-style:solid; 
+    border-right-width: 1px; 
+    border-bottom-style:solid; 
+    border-bottom-width: 1px;
+    border-left-color: #DCDCDC;
+    border-right-color: #DCDCDC; 
+    border-bottom-color: #DCDCDC;
+}
+.tdBorderHead {
+    border-left-style:solid; 
+    border-left-width: 1px; 
+    border-bottom-style:solid; 
+    border-bottom-width: 1px; 
+    border-left-color: white;
+    border-bottom-color: white;
+}
+.tdBorderRightHead {
+    border-left-style:solid; 
+    border-left-width: 1px; 
+    border-right-style:solid; 
+    border-right-width: 1px; 
+    border-bottom-style:solid; 
+    border-bottom-width: 1px; 
+    border-left-color: white;
+    border-right-color: white; 
+    border-bottom-color: white;
+}
+.subSectionHeaders
+{
+    COLOR: #b00;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 12pt;
+    FONT-WEIGHT: bold;
+    PADDING-Left: 5px;
+}
+.hl2
+{
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 13pt;
+    FONT-WEIGHT: bold
+}
+.hl3 { color: #666; font-weight: bold; font-size: 10pt; font-family: Calibri; height: 28px }
+.hl1name
+{
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: normal
+}
+.bg_yellow
+{
+    BACKGROUND-COLOR: #fc0
+}
+.bg_gray_eee
+{
+    BACKGROUND-COLOR: #eee
+}
+.bg_gray_ccc { background-color: #ccc }
+.bg_gray_999 { background-color: #999 }
+.bg_midblue
+{
+    BACKGROUND-COLOR: #99c
+}
+.bg_ligtblue
+{
+    BACKGROUND-COLOR: #ccf
+}
+.bg_darkblue
+{
+    BACKGROUND-COLOR: #669
+}
+.bg_white
+{
+    BACKGROUND-COLOR: white
+}
+.ascending
+{
+    src: "../images/bullet-minus-icon.gif"
+}
+.descending
+{
+    src: "../images/plus_box.gif"
+}
+.text
+ { font-size: 10pt; font-family: Calibri }
+
+.buttonText
+{  
+font-size: 10pt; 
+color: black; 
+font-family: Calibri
+}
+
+.menuItemWhite
+{  
+font-size: 10pt; 
+color: white; 
+font-family: Calibri;
+padding-top:2px;
+}
+.menuItemWhite:hover
+{  
+font-size: 10pt; 
+color: white; 
+font-family: Calibri; 
+font-weight:bold;
+padding-top:2px;
+}
+.menuItemSelected
+{  
+font-size: 11pt; 
+color: white; 
+font-family: Calibri;
+font-weight:bold;
+}
+ 
+.textBold
+ { font-size: 10pt; font-family: Calibri; FONT-WEIGHT: bold }
+.text_small
+{
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 8pt;
+    white-space:normal;
+}
+.text_small_black
+{
+    FONT-FAMILY: Calibri;
+    color: black; 
+    FONT-SIZE: 8pt;
+}
+.text_small_red
+{
+    FONT-FAMILY: Calibri;
+    color: red; 
+    FONT-SIZE: 8pt;
+}
+.subSectionSmallText
+{
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 8pt;
+    padding-left: 20px;
+}
+.text_pitzi
+{
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 6.5pt
+}
+.text_bold
+{
+    font-size: 10pt;
+    FONT-FAMILY: Calibri;
+    FONT-WEIGHT: bold
+}
+.textBlueHeader
+{
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+
+.text
+{ 
+   font-size: 10pt; 
+   font-family: Calibri 
+}
+
+.readOnly
+{  font-size: 10pt; 
+   color: gray; 
+   font-family: Calibri;
+   readonly: true;
+   disabled: true
+}
+.textItalicBlack8 
+{   font-size: 8px; 
+    font-style: italic; 
+    color: black; 
+    font-family: Calibri
+}
+
+.textWhite
+{  font-size: 10pt; 
+   color: white; 
+   font-family: Calibri 
+}
+
+.divTextWhite
+{  font-size: 10pt; 
+   color: white; 
+   font-family: Calibri;
+   text-align:center;
+   vertical-align: middle;
+   /*border:1px solid;
+   border-radius:5px; */
+}
+.textBlack
+{  font-size: 10pt; 
+   color: black; 
+   font-family: Calibri 
+}
+.textRed
+{  font-size: 10pt; 
+   color:#b00; 
+   font-family: Calibri 
+}
+.textRed6
+{  font-size: 6pt; 
+   color:#b00; 
+   font-family: Calibri 
+}
+.textWhite6
+{  font-size: 6pt; 
+   color: white; 
+   font-family: Calibri 
+}
+
+.Failed
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Fail
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.New
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.FailedLow
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;    
+}
+
+.FailedHigh
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold
+}
+.Passed
+{
+    COLOR: #096;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Running
+{
+    COLOR: #096;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    /*FONT-WEIGHT: bold*/
+}
+.Complete
+{
+    COLOR: #096;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    /*FONT-WEIGHT: bold*/
+}
+.Re-Run
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    /*FONT-WEIGHT: bold*/
+}
+.Loading
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE:10pt;
+    /*FONT-WEIGHT: bold*/
+}
+.Pass
+{
+    COLOR: #096;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE:10pt;
+    FONT-WEIGHT: bold
+}
+.Released
+{
+    COLOR: #006600;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE:10pt;
+    FONT-WEIGHT: bold
+}
+.Development
+{
+    COLOR: purple;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+}
+.Not
+{
+    COLOR: #0000CC;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+}
+.Not .Reproducible
+{
+    COLOR: #0000CC;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+}
+.No
+{
+    COLOR: #666666;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+}
+.No .Action
+{
+    COLOR: #666666;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+}
+.Fixes
+{
+    COLOR: #660000;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+}
+.Fixes .Ready
+{
+    COLOR: #660000;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+}
+.PassedHigh
+{
+    COLOR: #096;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold
+}
+
+.Done
+{
+    COLOR: #999;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Totals
+{
+    COLOR: black;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Closed
+{
+    COLOR: black;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.DoneHigh
+ { color: #999; font-weight: bold; font-size: 16pt; font-family: Calibri }
+.Information
+{
+    COLOR: #999;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.InformationHigh
+{
+    COLOR: #999;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold
+}
+.Known
+{
+    COLOR: #ff9900;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Known .Defects
+{
+    COLOR: #ff9900;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Missing
+{
+    COLOR: purple;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Missing .Data
+{
+    COLOR: purple;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Scenario
+{
+    COLOR: blue;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Scenario .Update
+{
+    COLOR: blue;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Existing
+{
+    COLOR: orange;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.Existing .KWD
+{
+    COLOR: orange;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.knownDefectsHigh
+{
+    COLOR: #ff9900;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 16pt;
+    FONT-WEIGHT: bold
+}
+.tablehl
+{
+    BACKGROUND-COLOR: #eee;
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 14pt
+}
+.tableBackground
+{
+    BACKGROUND-COLOR: #eee;
+}
+.tablehlBlack
+{
+    BACKGROUND-COLOR: #666666;
+    COLOR: 'white';
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 14pt
+}
+.tablehl8pt
+{
+    BACKGROUND-COLOR: #eee;
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 10pt
+}
+.tableSmall
+{
+    BACKGROUND-COLOR: #eee;
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 14pt
+}
+.tableSmallBlack
+{
+    BACKGROUND-COLOR: #eee;
+    COLOR: 'black';
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    LINE-HEIGHT: 14pt
+}
+.tableSmallNonBold
+{
+    BACKGROUND-COLOR: #eee;
+    COLOR: #669;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 7pt;
+    LINE-HEIGHT: 14pt
+}
+A
+{
+    COLOR: #33f;
+    FONT-FAMILY: Calibri
+}
+A:hover
+{
+    COLOR: #f03;
+    FONT-FAMILY: Calibri;
+    FONT-WEIGHT: bold
+}
+.Condition
+{
+    COLOR: #333399;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+.editText
+ { 
+font-size: 10pt; 
+font-family: Calibri;
+FONT-WEIGHT: bold; 
+}
+.editTextRed
+ { 
+	COLOR: #f03;
+	font-size: 10pt; 
+	font-family: Calibri;
+	FONT-WEIGHT: bold; 
+}
+.BoldGray
+ { 
+    COLOR: Gray;
+    font-size: 10pt; 
+    font-family: Calibri;
+    FONT-WEIGHT: bold; 
+}
+.dataText
+ { 
+font-size: 10pt; 
+font-family: Calibri;
+}
+
+.resultsEdit
+ { 
+font-size: 10pt; 
+font-family: Calibri;
+FONT-WEIGHT: bold; 
+width:40px;
+height:20px
+}
+body { font-family: Calibri }
+
+
+.tooltiptitle{COLOR: #FFFFFF; TEXT-DECORATION: none; CURSOR: Default; font-family: Calibri; font-weight: bold; font-size: 10pt}
+.tooltipcontent{COLOR: #000000; TEXT-DECORATION: none; CURSOR: Default; font-family: Calibri; font-size: 10pt}
+
+#ToolTip{position:absolute; width: 100px; top: 0px; left: 0px; z-index:4; visibility:hidden;}
+.brake { font-size: 1px; font-family: Calibri; background-color: #366; border-top: 15px solid white; border-bottom: 15px solid white; width: 100%; height: 35px }
+.iteration_border { padding-top: 5px; padding-bottom: 5px; padding-left: 10px; border-top: 3px solid #999; border-bottom: 3px solid #999; border-left: 3px solid #999 }
+.iteration_head { color: white; font-weight: bold; font-size: 12px; font-family: Calibri; background-color: #999; text-align: center; padding: 3px 3px 1px }
+.action_border  { padding-top: 5px; padding-bottom: 5px; padding-left: 10px; border-top: 3px solid #ccc; border-bottom: 3px solid #ccc; border-left: 3px solid #ccc }
+.action_head  { color: black; font-weight: bold; font-size: 12px; font-family: Calibri; background-color: #ccc; text-align: center; padding: 3px 3px 1px }
+.table_frame { padding: 3px; border: solid 1px #669 }
+.table_hl   { color: #669; font-weight: bold; font-size: 10pt; line-height: 14pt; font-family: Calibri; padding-right: 2px; padding-left: 2px; border-top: 1px solid #669; border-bottom: 1px solid #669 }
+.table_cell  { vertical-align: top; padding: 3px; border-bottom: 1px solid #eee; overflow: visible }
+p { font-size: 10pt; font-family: Calibri }
+td { font-size: 10pt; font-family: Calibri }
+ul { font-size: 10pt; font-family: Calibri }
+.rowover{
+    behavior:url("rowover.htc");
+}
+.body{ 
+	behavior:url("csshover.htc"); 
+}
+.filterSmall
+{
+	font-size: 8pt; 
+	font-family: Calibri;
+	height:12px;
+	WIDTH:60px;
+}
+.filterMed
+{
+	font-size: 10pt; 
+	font-family: Calibri;
+	height:12px;
+	WIDTH:120px;
+}
+.filterLarge
+{
+	font-size: 12pt; 
+	font-family: Calibri;
+	height:12px;
+	WIDTH:180px;
+}
+.dropdownSmall
+{
+	font-size: 8pt; 
+	font-family: Calibri;
+	height:18px;
+	WIDTH:60px;
+}
+.dropdownMed
+{
+	font-size: 10pt; 
+	font-family: Calibri;
+	height:18px;
+	WIDTH:120px;
+}
+.dropdownLarge
+{
+	font-size: 12pt; 
+	font-family: Calibri;
+	height:18px;
+	WIDTH:180px;
+}
+.High
+{  font-size: 8pt; 
+   color: #ff0000; 
+   font-family: Calibri; 
+}
+.Medium
+{  font-size: 8pt; 
+   color: #ff9900; 
+   font-family: Calibri;
+}
+.Low
+{  font-size: 8pt; 
+   color: #009900; 
+   font-family: Calibri;
+}
+.dropshadow 
+{   
+	width:450px;
+	filter:shadow(color:#000006, strength:4, direction=220);
+	color:white;
+	font-size:24pt;
+	text-align: center;
+}
+.gradientSilver
+{
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr='#000000', endColorstr='#666666', gradientType='1'); 
+}
+.gradientlogo
+{
+    position:absolute; 
+    top:25px; 
+    left:20px; 
+    width:130px; 
+    height:70px; 
+    border: 1px solid #666;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    
+}
+.testLogo
+{
+    background:
+        url('../images/ssp word only.BMP') no-repeat, 0, 0,
+        url('../images/sspbackground.png');
+        border-radius: 10px;
+        height: 70px;
+}
+.gradientRed
+{
+    /*background-color: #1a82f7;
+    background-image: url(images/fallback-gradient.png);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2F2727), to(#1a82f7));
+    background-image: -webkit-linear-gradient(top right, white, black);
+    background-image:    -moz-linear-gradient(top right, white, black);
+    background-image:     -ms-linear-gradient(top right, white, black);
+    background-image:      -o-linear-gradient(top right, white, black);*/
+	filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#ED1C24', startColorstr='white', gradientType='1');
+}
+.gradientBlack
+{
+	filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#000000', startColorstr='#ED1C24', gradientType='1');
+}
+.gradientWhiteBlack
+{
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(black));
+    background-image: -webkit-linear-gradient(top left, white, black);
+    background-image:    -moz-linear-gradient(top left, white, black);
+    background-image:     -ms-linear-gradient(top left, white, black);
+    background-image:      -o-linear-gradient(top left, white, black);
+	filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#000000', startColorstr='white', gradientType='1');
+}
+.gradientBlackWhite
+{
+	/*background-image: url(images/fallback-gradient.png);*/
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(white), to(black));
+    background-image: -webkit-linear-gradient(top right, white, black);
+    background-image:    -moz-linear-gradient(top right, white, black);
+    background-image:     -ms-linear-gradient(top right, white, black);
+    background-image:      -o-linear-gradient(top right, white, black);
+	filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='white', startColorstr='#000000', gradientType='1');
+}
+.searchImg
+{
+	position:relative;
+	left:-70px;
+	top:5px;
+}
+.addImg
+{
+	position:relative;
+	left:0px;
+	top:5px;
+}
+.addResourceImg
+{
+	position:relative;
+	left:0px;
+	top:0px;
+}
+/* DIV container around table to constrict the height for IE (IE ignores the tbody height style) */
+div.FixedTableHead {
+	overflow-x:hidden;
+	overflow-y:auto;
+	
+	/* this fixes IE so container width is same as table width */
+	/*width: expression( (this.childNodes[0].clientWidth + 24) + 'px' );*/
+	
+	/* This fixes IE so the container height is table height plus the height of the header */
+	/*height: expression( (parseInt(this.childNodes[0].style.height) + this.childNodes[0].childNodes[1].offsetTop + 1) +'px' );*/
+}
+/* Scrollable Content for multiple browsers */
+.FixedTableHead table tbody {
+	height:100%;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.FixedTableHead table tbody tr {
+	height: auto;
+	white-space: nowrap;
+}
+
+/* Prevent Mozilla scrollbar from hiding right-most cell content */
+.FixedTableHead table tbody tr td:last-child {
+	padding-right: 20px;
+}
+
+/* Fixed Header */
+/* In WinIE any element with a position property set to relative and is a child of       */
+/* an element that has an overflow property set, the relative value translates into fixed.    */
+/* Ex: parent element DIV with a class of tableContainer has an overflow property set to auto */
+.FixedTableHead table thead tr {
+	position: relative;
+	height: auto;
+	/* this fixes IE header jumping bug when mousing over rows in the tbody */
+	top: expression( this.parentNode.parentNode.parentNode.scrollTop + 'px' );
+}
+
+/*.tdBorder {
+    border-collapse: collapse; 
+    border-bottom: 1px solid #BABABA;
+    vertical-Align: middle;
+    text-Align: left;
+    height: 20;
+}*/
+
+.tdBorderLight {
+    border-collapse: collapse; 
+    border-bottom: 1px solid #E0E0E0;
+    vertical-Align: middle;
+    text-Align: left;
+    height: 20;
+}
+
+.tdNoBorder {
+    vertical-Align: middle;
+    text-Align: left;
+    height: 20;
+}
+
+/* Fixed Header */
+/*.FixedTableHead table thead tr td {
+	border-bottom:1px solid #000000;
+	background-color:white;
+}*/
+
+.textBlackBold
+{
+    COLOR: black;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold; 
+    padding-right:5px;
+}
+
+.textGreen
+{
+    COLOR: green;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold; 
+}
+
+.textGreen8
+{
+    COLOR: green;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold; 
+}
+
+.textRedBold
+{
+    COLOR: #9c0006;
+    text-align:center;
+    vertical-align: middle;
+    border:1px solid;
+    border-radius:10px;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    background-color: #E1C7CE; 
+    padding-right:5px;
+    height:100%; 
+    width:inherit; 
+    display:block;
+}
+.textYellowBold
+{
+    COLOR: #9c6500;
+    text-align:center;
+    vertical-align: middle;
+    border:1px solid;
+    border-radius:10px;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    background-color: #FFEB9C; 
+    height:100%; 
+    width:inherit; 
+    display:block;
+}
+.textGreenBold
+{
+    COLOR:  #006400;
+    text-align:center;
+    vertical-align: middle;
+    border:1px solid;
+    border-radius:10px;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    background-color: #C6EFCE; 
+    height:100%; 
+    width:inherit; 
+    display:block;
+}
+
+.textGrayBold
+{
+    COLOR: white;
+    text-align:center;
+    vertical-align: middle;
+    border:1px solid;
+    border-radius:10px;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold;
+    background-color: #8C8C8C; 
+    height:100%; 
+    width:inherit; 
+    display:block;
+}
+
+.countGreen
+{
+    COLOR: green;
+    text-align:center;
+    vertical-align: middle;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 8pt;
+    FONT-WEIGHT: bold;
+    height:100%; 
+    width:100%; 
+    display:block;
+}
+
+.crossRed
+{
+    COLOR: red;
+    text-align:center;
+    FONT-FAMILY: Wingdings;
+    FONT-SIZE: 10pt;
+    height:100%; 
+    width:100%; 
+    display:block;
+}
+
+.textRed
+{
+    COLOR: #b00;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    padding-right:5px;
+}
+
+.btnResults
+{
+    COLOR: #b00;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    padding-right:5px; 
+    cursor:pointer;
+    
+}
+.btnResults:hover
+{
+    COLOR: black;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold; 
+    padding-right:5px;
+    cursor:pointer;
+}
+.tdBottomBorder 
+{
+    BORDER-BOTTOM:#CCCCCC 0.5px solid;
+}
+.WindowClass
+{
+    COLOR: #0000CC;
+    FONT-FAMILY: Calibri;
+    FONT-SIZE: 10pt;
+    FONT-WEIGHT: bold
+}
+
+table.coverage {
+ border: 1px solid #d7d7d7;
+ border-collapse: collapse;
+ border-spacing: 0;
+ float: left;
+ margin:7px;
+ /*display:inline-block;
+ margin: 0;
+ padding: 0;
+ empty-cells: show;*/
+}
+table.coverage a, table.coverage :link, table.coverage :visited
+ {
+ border: none;
+ display: inline-block;
+ /*width: 100%;*/
+ padding: 0;
+ text-decoration: none;
+ cursor:pointer;
+}
+table.coverage :link:hover {
+ color: red;
+ cursor:pointer;
+ padding:0;
+}
+table.coverage td { background: #fff; padding:0; height: 3px; }
+table.coverage td.new { background: #233A00 }
+table.coverage td.closed { background: #8B0000 }
+table.coverage td.open { background: #8B0000 }
+table.coverage td.covered
+{
+	/*background-image: url(images/fallback-gradient.png);*/
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(green), to(#E3E3E3));
+    background-image: -webkit-linear-gradient(top right, #E3E3E3, green);
+    background-image:    -moz-linear-gradient(top right, #E3E3E3, green);
+    background-image:     -ms-linear-gradient(top right, #E3E3E3, green);
+    background-image:      -o-linear-gradient(top right, #E3E3E3, green);
+	filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#E3E3E3', startColorstr='#233A00', gradientType='1');
+}
+table.coverage td.notCovered
+{
+	/*background-image: url(images/fallback-gradient.png);*/
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8B0000), to(#E3E3E3));
+    background-image: -webkit-linear-gradient(top right, #E3E3E3, #8B0000);
+    background-image:    -moz-linear-gradient(top right, #E3E3E3, #8B0000);
+    background-image:     -ms-linear-gradient(top right, #E3E3E3, #8B0000);
+    background-image:      -o-linear-gradient(top right, #E3E3E3, #8B0000);
+	filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#E3E3E3', startColorstr='#B61B1B', gradientType='1');
+}
+table.coverage td.remaining
+{
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8B0000), to(#E3E3E3));
+    background-image: -webkit-linear-gradient(top right, #E3E3E3, #8B0000);
+    background-image:    -moz-linear-gradient(top right, #E3E3E3, #8B0000);
+    background-image:     -ms-linear-gradient(top right, #E3E3E3, #8B0000);
+    background-image:      -o-linear-gradient(top right, #E3E3E3, #8B0000);
+	filter:progid:DXImageTransform.Microsoft.Gradient(endColorstr='#E3E3E3', startColorstr='#8A8A8A', gradientType='1');
+}
+table.coverage td :hover { background: none }

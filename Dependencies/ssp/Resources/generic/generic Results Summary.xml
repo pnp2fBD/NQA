@@ -1,0 +1,15 @@
+<?xml-stylesheet href="../xsl/EnvironmentDetails.xsl" type="text/xsl"?>
+<suiteResults environment="Integration">
+	<INTEGRATION passed="2" failed="1" knownDefects="1" missingData="8" lastRun="09:54:23" resultsSummaryURL="P:\Quality Assurance\Test Scripts\QTP Automation\Automated Test Results\INTEGRATION\INTEGRATION Results Summary.xml">
+		<suites>
+			<suite number="1" status="Pass" lastRun="" runDuration="0">
+				<tests>
+					<item scenario="0" status="0" lastRun="" runDuration="15" host="0" screenshotURL="" comments=""/>
+				</tests>
+			</suite>
+		</suites>
+		<tests>
+			<item scenario="" scenarioURL="" status="" failures="" suite="" dateRun="" lastRun="" runDuration="" runDurationSeconds="" host="" screenshotURL="" comments=""/>
+		</tests>
+	</INTEGRATION>
+</suiteResults>

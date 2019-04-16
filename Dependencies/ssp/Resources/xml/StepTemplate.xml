@@ -1,0 +1,21 @@
+<genericStep number="" description="">
+	<interactionType/>
+	<dataTable/>
+	<dataStepNumber/>
+	<status/>
+	<obj/>
+	<expected/>
+	<actual/>
+	<defectID/>
+	<imageURL/>
+	<time/>
+	<comments/>
+	<services>
+		<name/>
+		<operation/>
+		<extraInfo/>
+		<request/>
+		<response/>
+		<time/>
+	</services>
+</genericStep>

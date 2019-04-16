@@ -1,0 +1,6 @@
+<?xml-stylesheet href="../xsl/EnvironmentHistory.xsl" type="text/xsl"?>
+<suiteResults environment="Integration">
+	<test scenario="" template="True" scenarioURL="" status="" failures="0" suite="" dateRun="" lastRun="" runDuration="" runDurationSeconds="" host="" screenshotURL="" comments="">
+		<item scenario="" scenarioURL="" status="" failures="" suite="" dateRun="" lastRun="" runDuration="" runDurationSeconds="" host="" screenshotURL="" comments=""/>
+	</test>
+</suiteResults>

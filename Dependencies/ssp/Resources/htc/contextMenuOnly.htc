@@ -1,0 +1,256 @@
+<PUBLIC:COMPONENT tagName="contextMenu">
+	<PUBLIC:DEFAULTS tabStop="true"/>
+ 	<PUBLIC:ATTACH event="oncontentready" onevent="initMenu()"/>
+	<PUBLIC:PROPERTY NAME="htmlString"/>
+	<PUBLIC:PROPERTY NAME="delayContextMenu"/>
+	<PUBLIC:PROPERTY NAME="tablesPopupMenu"/>
+	<PUBLIC:METHOD NAME="buildMenu"/> 
+	<PUBLIC:METHOD NAME="setContextArray"/>
+	<PUBLIC:METHOD NAME="fnMouseOver"/>
+	<PUBLIC:METHOD NAME="fnMouseOut"/> 
+	<PUBLIC:METHOD NAME="fnOnMouseUp"/> 
+	<PUBLIC:METHOD NAME="showContextMenu"/> 
+</PUBLIC:COMPONENT>
+
+
+<SCRIPT Language="Javascript">
+
+var htmlString = "";
+var contextArray;
+var tablesPopupMenu;
+var delayContextMenu = false;
+var menuWidth = 0;
+var menuHeight = 0;
+var tBodyId;
+var tHeaderId;
+var inActive = null;
+
+function initMenu() 
+{
+	// link behaviour to document
+	defaults.viewLink = document;
+	
+	tBodyId = "tBody"+element.id.substr(5);
+	tHeaderId = "tHeader"+element.id.substr(5);
+	
+	// create popup, add styles
+	tablesPopupMenu = window.createPopup();
+	tablesPopupMenu.document.body.style.borderTop = "#efefef solid 2";
+	tablesPopupMenu.document.body.style.borderLeft = "#efefef solid 2";
+	tablesPopupMenu.document.body.style.borderBottom = "#505050 solid 2";
+	tablesPopupMenu.document.body.style.borderRight = "#505050 solid 2";
+	tablesPopupMenu.document.body.style.marginBottom = "4px";
+	tablesPopupMenu.document.body.style.marginRight = "4px";
+	tablesPopupMenu.document.body.style.overflowY = "hidden";
+	tablesPopupMenu.document.body.bgColor = "#c0c0c0";
+	tablesPopupMenu.document.body.setAttribute("oncontextmenu", "return false;");
+	var popupStyle = tablesPopupMenu.document.createStyleSheet();
+	popupStyle.addRule(".menu", "font-family: verdana; font-size: 7.5pt; width:100%; height:100%; padding:2;");
+	popupStyle.addRule(".disabledItem", "background-color:transparent; color:graytext; cursor:default;");
+	popupStyle.addRule(".highlightItem", "background-color:#002277; color:white; cursor:hand;");
+	popupStyle.addRule(".menuItem", "background-color:transparent; color:black; cursor:default;");
+	
+	
+}
+
+function buildMenu(preBuildStr)
+{	
+	// called from screen js - on rightclick
+	if (preBuildStr) {	// if html string is being passed in 
+		htmlString = preBuildStr;
+		
+	} else {
+		var optionList = contextArray;
+		if (optionList) {
+			htmlString = "<table id='menuTbl' class='menu'>";
+			for(var j=0; j<optionList.length; j++) {
+				if (typeof(optionList[j]) != "undefined" && optionList[j] != "") {
+					var newRow = addRow(optionList[j]);
+					htmlString += newRow;
+				}
+			}	
+			htmlString += "</table>";
+		}
+	}
+	
+	menuDiv.innerHTML = htmlString;
+}
+
+function setContextArray(list)
+{
+	// called from screen js - sets context array and enables/disables action button
+	contextArray = list;
+}
+
+function fnMouseOver(obj)
+{
+	// highlight
+ 	obj.className = "highlightItem";
+  	obj.style.cursor = "hand";
+}
+
+function fnMouseOut(obj)
+{
+	// unhighlight
+	if (unescape(obj.functionName) == "disabled") {
+		obj.className = "disabledItem";
+	} else {
+ 		obj.className = "menuItem";
+	}
+	obj.style.cursor = "default";
+}
+
+function fnOnMouseUp(obj)
+{
+	//determine mouse click - launch process in same window on left-click and
+	//in a new window for right-click - AD
+	var mouseClick = obj.document.parentWindow.event.button;
+	var functionNames = obj.functionName.split(";")
+	if (mouseClick=="2" && functionNames.length>1){
+		var functionName = unescape(functionNames[1]);
+	}else{
+		var functionName = unescape(functionNames[0]);
+	}
+	
+	eval("window."+functionName);
+	if (tablesPopupMenu.isOpen) {
+		tablesPopupMenu.hide();
+	}
+}
+
+function addRow(listItem)
+{
+	var header = false;
+	var displayText = listItem.split(";")[1];
+	if(displayText == "") {
+		var rowString = "<tr><td><hr></td></tr>";
+		
+	} else {
+		var optionID = listItem.split(";")[0];
+		if (optionID.indexOf("H-") != -1) {
+			optionID = optionID.split("-")[1];
+			header = true;
+		}
+		var imageSrc = listItem.split(";")[2];
+		var isEnabled = listItem.split(";")[3];
+		
+		//added right and left click functionality - AD
+		var functionNameLC = listItem.split(";")[4];
+		var functionNameRC = listItem.split(";")[5];
+		if(functionNameRC==undefined || functionNameRC==""){
+			functionNameRC = ";" + escape(functionNameLC);
+		}else{
+			functionNameRC = ";" + escape(functionNameRC);
+		}
+		var functionName = functionNameLC;
+		var thisStyle = isEnabled==1?"style='width: 20px;' align='absmiddle'":"style='width: 20px;filter:gray Alpha(opacity=50)' align='absmiddle'";
+		var thisClass = isEnabled==1?"menuItem":"disabledItem";
+		functionName = isEnabled==1?"functionName = '"+escape(functionName)+ functionNameRC+ "'":"functionName='disabled'";
+		
+		var onmouseover = "";
+		var onmouseout = "";
+		var onmouseup = "";
+		var headerStyle = "";
+		var imageString = "";
+		
+		// check for header and add style or build image and mouse actions
+		if(header) {
+			headerStyle = "style='height:15px; text-decoration:underline; font-weight:bold; color: firebrick;'";
+		} else {
+			onmouseover = " onmouseover='parent."+element.id+".fnMouseOver(this)'";
+			onmouseout = " onmouseout='parent."+element.id+".fnMouseOut(this)'";
+			onmouseup = " onmouseup='parent."+element.id+".fnOnMouseUp(this)' ";
+			if(imageSrc != null && imageSrc != ""){		
+				var imageString = top.buildIcon(imageSrc, null, null, null, thisStyle, null)+"&nbsp;&nbsp;";
+			} else {
+				var imageString = top.buildIcon("BlankIcon", null, null, null, thisStyle, null)+"&nbsp;&nbsp;";
+			}
+		}
+		
+		var rowString = "<tr" + onmouseover + onmouseout + onmouseup + functionName + " id='" + optionID + "' class='"+thisClass+"'><td nowrap align='left'>"+imageString + "<label "+headerStyle+">"+displayText+"</label></td></tr>";
+	}
+
+	return rowString;
+}
+
+function showContextMenu(build, keyPress)
+{
+
+	if (delayContextMenu) {
+		return;
+	} 
+	var tBody = eval("window."+tBodyId);
+	if (tBody) {	
+		inActive = tBody.inActive;
+	}
+	
+	if (build != false) {
+		buildMenu();
+	}
+	
+	// populate popup, get height and width - show to determine the real height and width of menu
+	tablesPopupMenu.document.attachEvent("onreadystatechange", getMenuDimensions);
+	tablesPopupMenu.document.body.innerHTML = htmlString;
+	tablesPopupMenu.show(0,0,0,0);
+	
+	if (getMenuDimensions()) {
+	
+		//position menu top and left 
+		var menuTop;
+		var menuLeft;
+		var container = element.parentElement;
+			
+		if (typeof(keyPress) != "undefined" && keyPress) {
+			var headerHeight = 0;
+			if (typeof(eval("window."+tHeaderId)) != "undefined") {
+				headerHeight = eval("window."+tHeaderId+".clientHeight");
+			}
+			var xslTblDiv = tBody.xslTblDiv;
+			menuTop = container.offsetTop + tBody.currentSelectedRow.offsetTop - xslTblDiv.scrollTop + headerHeight - menuHeight/2;
+			menuLeft = container.offsetLeft + container.clientWidth/2;
+		} else {
+			var y = parseInt(window.event.clientY - menuHeight);
+			if(container.offsetTop < y){
+				menuTop = y;
+			} else {
+				menuTop = window.event.clientY;
+			}
+			var x = parseInt(window.event.clientX);
+			if (x+menuWidth > container.offsetLeft+container.clientWidth){
+				menuLeft = window.event.clientX-menuWidth ;
+			} else {
+				menuLeft = x;
+			}
+		}
+		
+		tablesPopupMenu.show(menuLeft, menuTop, menuWidth, menuHeight, window.document.body);
+	}
+	
+}
+
+function getMenuDimensions()
+{// determine height and width for menu
+
+	if (tablesPopupMenu.document.readyState != "complete") {
+		getMenuDimensions();
+	} else {
+		menuWidth = tablesPopupMenu.document.body.scrollWidth;
+		menuHeight = tablesPopupMenu.document.body.scrollHeight;
+		if (menuHeight > 250) {
+			menuHeight = 250;	
+			tablesPopupMenu.document.body.style.overflowY = "auto";		
+		} else {
+			tablesPopupMenu.document.body.style.overflowY = "hidden";
+		}
+		tablesPopupMenu.hide();
+		tablesPopupMenu.document.detachEvent("onreadystatechange",  getMenuDimensions);
+		return true;
+	}
+}
+
+</SCRIPT>
+
+
+<BODY>
+<div id="menuDiv" style="display:none;"></div>
+</BODY>
